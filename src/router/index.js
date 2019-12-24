@@ -56,6 +56,45 @@ export const constantRoutes = [
   },
 
   {
+    path: '/acceptWaste',
+    component: Layout,
+    children: [
+      {
+        path: 'acceptWaste',
+        name: 'acceptWaste',
+        component: () => import('@/views/acceptWaste/index'),
+        meta: { title: '接受废品', icon: 'example' }
+      }
+    ]
+  },
+
+  {
+    path: '/sendWaste',
+    component: Layout,
+    children: [
+      {
+        path: 'sendWaste',
+        name: 'sendWaste',
+        component: () => import('@/views/sendWaste/index'),
+        meta: { title: '发货', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/storageWaste',
+    component: Layout,
+    children: [
+      {
+        path: 'storageWaste',
+        name: 'storageWaste',
+        component: () => import('@/views/storageWaste/index'),
+        meta: { title: '入库废品', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',

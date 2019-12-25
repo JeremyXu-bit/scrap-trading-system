@@ -141,7 +141,7 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: 'checkWaste',
         name: 'checkWaste',
         component: () => import('@/views/checkWaste/index'),
         meta: { title: '审核废品', icon: 'form' }
@@ -154,13 +154,74 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: 'certification',
         name: 'certification',
         component: () => import('@/views/certification/index'),
         meta: { title: '实名认证', icon: 'form' }
       }
     ]
   },
+  // 顶部导航
+  {
+    path: '/accountInfo',
+    component: Layout,
+    redirect: '/accountInfo/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/accountInfo/index'),
+        name: 'accountInfo',
+        meta: { title: '账号信息', icon: 'user', noCache: true }
+      }
+    ]
+  },
+
+  {
+    path: '/securitySettings',
+    component: Layout,
+    redirect: '/securitySettings/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/securitySettings/index'),
+        name: 'securitySettings',
+        meta: { title: '账号信息', icon: 'user', noCache: true }
+      }
+    ]
+  },
+
+  {
+    path: '/addAccount',
+    component: Layout,
+    redirect: '/addAccount/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/addAccount/index'),
+        name: 'addAccount',
+        meta: { title: '添加账号', icon: 'user', noCache: true }
+      }
+    ]
+  },
+
+  {
+    path: '/API',
+    component: Layout,
+    redirect: '/API/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/API/index'),
+        name: 'API',
+        meta: { title: 'API网关', icon: 'user', noCache: true }
+      }
+    ]
+  },
+  // END
 
   // {
   //   path: '/nested',

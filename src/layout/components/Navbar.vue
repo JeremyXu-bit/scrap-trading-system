@@ -1,37 +1,34 @@
 <template>
   <div class="navbar">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
     <breadcrumb class="breadcrumb-container" />
-
     <div class="right-menu">
-
       <el-dropdown class="avatar-container">
         <div class="avatar-wrapper" trigger="click">
-          <i class="el-icon-setting">个人设置</i>
+          <i class="el-icon-setting"><span style="margin-left:5px">个人设置</span></i>
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
+          <router-link to="/accountInfo/index">
             <el-dropdown-item>
               账号信息
             </el-dropdown-item>
           </router-link>
-          <router-link to="/">
+          <router-link to="/securitySettings/index">
             <el-dropdown-item>
               安全设置
             </el-dropdown-item>
           </router-link>
-          <router-link to="/">
+          <router-link to="/addAccount/index">
             <el-dropdown-item>
               添加账号
             </el-dropdown-item>
           </router-link>
-          <router-link to="/">
+          <router-link to="" @click.native="clkdialog">
             <el-dropdown-item>
               权限管理
             </el-dropdown-item>
           </router-link>
-          <router-link to="/">
+          <router-link to="/API/index">
             <el-dropdown-item>
               API网关
             </el-dropdown-item>
@@ -41,13 +38,14 @@
 
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <!-- <i class="el-icon-caret-bottom"> -->
-          <span>王小虎</span>
+          <i class="el-icon-user">
+            <svg-icon icon-class="user" />
+            <span style="margin-left:5px">王小虎</span>
+          </i>
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <el-dropdown-item>
-            <span style="display:block;" @click="logout">Log Out</span>
+            <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -78,6 +76,12 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    clkdialog() {
+      this.$message({
+        message: '暂无权限！',
+        type: 'warning'
+      })
     }
   }
 }

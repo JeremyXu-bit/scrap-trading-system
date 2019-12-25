@@ -2,16 +2,16 @@
   <div class="dashboard-container">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="公司名称">
-        <el-input v-model="form.name" />
+        <el-input v-model="form.name" placeholder="请输入公司名称" />
       </el-form-item>
       <el-form-item label="联系人">
-        <el-input v-model="form.account" />
+        <el-input v-model="form.account" placeholder="请输入联系人名称" />
       </el-form-item>
       <el-form-item label="APP ID">
-        <el-input v-model="form.AppId" />
+        <el-input v-model="form.AppId" placeholder="请输入ID" />
       </el-form-item>
-      <el-form-item label="APP Key">
-        <el-input v-model="form.AppKey" />
+      <el-form-item label="API Key">
+        <el-input v-model="form.AppKey" placeholder="请输入Key" />
       </el-form-item>
       <el-form-item>
         <el-button
@@ -34,11 +34,11 @@
         <el-table-column prop="contact" label="联系人" />
         <el-table-column prop="tel" label="联系电话" />
         <el-table-column prop="AppId" label="APP ID" />
-        <el-table-column prop="ApiKey" label="API Key" />
-        <el-table-column label="操作" width="100">
-          <template>
+        <el-table-column prop="AppId" label="API Key" />
+        <el-table-column fixed="right" label="操作" width="100">
+          <template slot-scope="scope">
             <el-button type="text" size="small">详情</el-button>
-            <el-button type="text" size="small">删除</el-button>
+            <el-button type="text" size="small" @click.native.prevent="deleteRow(scope.$index, tableData)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -100,6 +100,27 @@ export default {
     },
     handleClick(row) {
       console.log(row)
+    },
+    // addRow() {
+    //   this.tableData.push({
+    //     date: '',
+    //     name: '',
+    //     contact: '',
+    //     tel: '',
+    //     AppId: '',
+    //     ApiKey: ''
+    //   })
+    // },
+    deleteRow(index, rows) { // 删除改行
+      this.fullscreenLoading = true
+      setTimeout(() => {
+        rows.splice(index, 1)
+        this.fullscreenLoading = false
+        this.$message({
+          message: '删除成功！',
+          type: 'success'
+        })
+      }, 2000)
     }
   }
 }

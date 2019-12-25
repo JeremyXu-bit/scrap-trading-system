@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title" style="font-weight: 500;">废品交易后台管理系统</h3>
+        <h3 class="title" style="font-weight: 600;color:#fff;">废品交易后台管理系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -172,21 +172,23 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
+// $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  // background-color: $bg;
+  background-image: url('../../assets/404_images/background.png');
   overflow: hidden;
+  background-size: cover;
 
   .login-form {
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 200px 35px 0;
     margin: 0 auto;
     overflow: hidden;
   }

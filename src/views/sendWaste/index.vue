@@ -17,32 +17,21 @@
         <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
-      <!-- <el-button @click="dialogFormVisible = true">确定接受</el-button> -->
+        <el-button type="primary" plain>搜索</el-button>
+        <!-- <el-button @click="dialogFormVisible = true">确定接受</el-button> -->
       </el-form-item>
 
       <div style="margin-top:50px">
         <template>
           <div>
-            <el-table
-              ref="multipleTable"
-              border
-              :data="tableData"
-              tooltip-effect="dark"
-              style="width: 100%"
-              @selection-change="handleSelectionChange"
-            >
+            <el-table ref="multipleTable" border :data="tableData" tooltip-effect="dark" style="width: 100%"
+              @selection-change="handleSelectionChange">
               <el-table-column label="订单时间" width="150">
                 <template slot-scope="scope">{{ scope.row.date }}</template>
               </el-table-column>
               <el-table-column prop="number" label="订单单号" width="250">
-                <el-button
-                  slot-scope="scope"
-                  type="text"
-                  size="small"
-                  round
-                  @click="dialogTableVisible = true"
-                >{{ scope.row.number }}</el-button>
+                <el-button slot-scope="scope" type="text" size="small" round @click="dialogTableVisible = true">
+                  {{ scope.row.number }}</el-button>
               </el-table-column>
               <el-table-column prop="name" label="接受企业" width="150" />
               <el-table-column prop="type" label="废品种类" width="150" />
@@ -55,12 +44,7 @@
 
             <template>
               <div>
-                <el-pagination
-                  small
-                  layout="prev, pager, next"
-                  :total="50"
-                  style="text-align:right;padding-top:10px"
-                />
+                <el-pagination small layout="prev, pager, next" :total="50" style="text-align:right;padding-top:10px" />
               </div>
             </template>
 
@@ -112,100 +96,97 @@
 </template>
 
 <script>
+  export default {
 
-export default {
-
-  data() {
-    return {
-      form: {
-        date1: '',
-        date2: '',
-        number: '',
-        type: '',
-        name: ''
-      },
-      dialogTableVisible: false,
-      dialogFormVisible: false,
-      form2: {
-        name: '',
-        number: ''
-      },
-      formLabelWidth: '120px',
-      tableData: [
-        {
-          date: '2016-05-03',
-          number: 'SF20191230123456030',
-          name: '中国重工',
-          type: '重金属'
+    data() {
+      return {
+        form: {
+          date1: '',
+          date2: '',
+          number: '',
+          type: '',
+          name: ''
         },
-        {
-          date: '2016-05-03',
-          number: 'SF20191230123456030',
-          name: '中国重工',
-          type: '重金属'
-        }
-      ],
-      multipleSelection: [],
-      gridData: [
-        {
+        dialogTableVisible: false,
+        dialogFormVisible: false,
+        form2: {
+          name: '',
+          number: ''
+        },
+        formLabelWidth: '120px',
+        tableData: [{
+            date: '2016-05-03',
+            number: 'SF20191230123456030',
+            name: '中国重工',
+            type: '重金属'
+          },
+          {
+            date: '2016-05-03',
+            number: 'SF20191230123456030',
+            name: '中国重工',
+            type: '重金属'
+          }
+        ],
+        multipleSelection: [],
+        gridData: [{
           name: '中国园林',
           acceptName: '绿化企业',
           date: '2016-05-03',
           number: 'SW2345678',
           name2: '钟启超',
           tel: '18679089745'
+        }],
+        gridData2: [{
+            number: 'SW2345678',
+            name: '树木',
+            totals: '50吨'
+          },
+          {
+            number: 'SW2345678',
+            name: '树木',
+            totals: '50吨'
+          }
+        ],
+        form3: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
         }
-      ],
-      gridData2: [
-        {
-          number: 'SW2345678',
-          name: '树木',
-          totals: '50吨'
-        },
-        {
-          number: 'SW2345678',
-          name: '树木',
-          totals: '50吨'
-        }
-      ],
-      form3: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
       }
-    }
-  },
-  methods: {
-    onSubmit() {
-      this.$message({
-        message: '提交成功',
-        type: 'success'
-      })
     },
-    toggleSelection(rows) {
-      if (rows) {
-        rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
+    methods: {
+      onSubmit() {
+        this.$message({
+          message: '提交成功',
+          type: 'success'
         })
-      } else {
-        this.$refs.multipleTable.clearSelection()
+      },
+      toggleSelection(rows) {
+        if (rows) {
+          rows.forEach(row => {
+            this.$refs.multipleTable.toggleRowSelection(row)
+          })
+        } else {
+          this.$refs.multipleTable.clearSelection()
+        }
+      },
+      handleSelectionChange(val) {
+        this.multipleSelection = val
       }
-    },
-    handleSelectionChange(val) {
-      this.multipleSelection = val
     }
   }
-}
+
 </script>
 <style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
+  .dashboard {
+    &-container {
+      margin: 30px;
+    }
   }
-}
+
 </style>

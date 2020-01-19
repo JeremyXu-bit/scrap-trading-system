@@ -15,6 +15,8 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import 'default-passive-events'
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -34,7 +36,7 @@ if (process.env.NODE_ENV === 'development') {
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

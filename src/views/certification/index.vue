@@ -24,7 +24,7 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button type="primary" plain>搜索</el-button>
       </el-form-item>
       <div style="margin-top:50px">
         <template>
@@ -44,9 +44,9 @@
               <el-table-column prop="name" label="姓名/企业名称" />
               <el-table-column prop="status" label="审核状态" />
               <el-table-column prop="operation" label="操作" show-overflow-tooltip>
-                <template>
-                  <el-button type="text" size="small" @click="persionCertificationVisible = true">审核</el-button>
-                  <el-button type="text" size="small" @click="persionCertificationVisible = true">详情</el-button>
+                <template  slot-scope="scope">
+                  <el-button type="text" size="small" @click="open1(scope.row)">审核</el-button>
+                  <el-button type="text" size="small" @click="open2(scope.row)">详情</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -64,7 +64,7 @@
 
             <template>
               <div>
-                <el-dialog title="个人实名认证审核" :visible.sync="persionCertificationVisible">
+                <el-dialog :title="titleName[dialogStatus]" :visible.sync="persionCertificationVisible">
                   <table v-for="(item, index) in gridData2" :key="index" style="width:100%">
                     <tr>
                       <th>姓名：</th>
@@ -150,7 +150,7 @@
           </el-table>
           <div slot="footer" class="dialog-footer">
             <el-button
-              type="primary"
+            type="primary" plain
               @click="dialogTableVisible = false;dialogFormVisible = true"
             >下一步</el-button>
           </div>
@@ -191,6 +191,11 @@ export default {
 
   data() {
     return {
+      titleName: {
+	     persionInfo: '个人实名认证详情',
+	     companyInfo: '企业实名认证详情'
+	   },
+	   dialogStatus: '' ,
       form: {
         date1: '',
         date2: '',
@@ -237,19 +242,8 @@ export default {
       multipleSelection: [],
       gridData2: [
         {
-          date: '2016-05-03',
-          number: 'BG3578784535',
-          wasteName: '樟木',
-          total: '200KG',
-          vendorName: '上海林业局',
-          vendorType: '企业',
-          status: '成功',
-          publisher: '陈小虎',
-          tel: '15678907658',
-          reviewDate: '2016-05-08',
-          Verifier: '李丽',
-          reviewUnit: '上海审计局',
-          reason: ''
+          name: '上海化工',
+          persionID: 'SH201806078945'
         }
       ],
       textarea: ''
@@ -273,6 +267,18 @@ export default {
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
+    },
+    open1(row){
+      // console.log(row.type)
+      this.persionCertificationVisible = true
+      if (row.type === '企业') {
+	       this.dialogStatus = "companyInfo"
+      } else {
+        this.dialogStatus = "persionInfo"
+      }
+    },
+    open2(row){
+      this.persionCertificationVisible = true
     }
   }
 }

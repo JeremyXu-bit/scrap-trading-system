@@ -20,7 +20,7 @@
         <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button type="primary" plain>搜索</el-button>
 
       </el-form-item>
       <div style="margin-top:50px">

@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item label="总量" prop="totals">
         <!-- <el-input v-model="form.totals" /> -->
-        <el-input v-model="form.totals" placeholder="请输入数量" type="number">
+        <el-input v-model="form.totals" placeholder="请输入数量" type="number" maxlength="6" min="1">
           <template slot="append">KG</template>
         </el-input>
       </el-form-item>
@@ -17,8 +17,8 @@
         <el-input v-model="form.contacter" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" placeholder="请输入联系方式" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">确认发布</el-button>
-        <el-button @click="onCancel">重置</el-button>
+        <el-button type="primary" plain @click="onSubmit">确认发布</el-button>
+        <el-button type="primary" plain @click="onCancel">重置</el-button>
       </el-form-item>
     </el-form>
   </div>

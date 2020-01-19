@@ -20,15 +20,15 @@
       <el-form-item label="姓名">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="电话">
+      <el-form-item label="联系方式">
         <el-input v-model="form.tel" />
       </el-form-item>
       <el-form-item>
         <el-button
           v-loading.fullscreen.lock="fullscreenLoading"
-          type="primary"
           style="float: right;"
           @click="open"
+          type="primary" plain
         >确认</el-button>
       </el-form-item>
     </el-form>

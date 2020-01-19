@@ -14,6 +14,15 @@ export const constantRoutes = [
   },
 
   {
+    path: '/register',
+    component: () => import('@/views/register/index')
+  },
+  {
+    path: '/forgetPsw',
+    component: () => import('@/views/forgetPsw/index')
+  },
+
+  {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
@@ -191,7 +200,6 @@ export const constantRoutes = [
       }
     ]
   },
-
   {
     path: '/addAccount',
     component: Layout,
@@ -202,11 +210,15 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/addAccount/index'),
         name: 'addAccount',
-        meta: { title: '添加账号', icon: 'user', noCache: true }
+        meta: {
+          title: '添加账号',
+          icon: 'user',
+          noCache: true,
+          roles: ['admin']
+        }
       }
     ]
   },
-
   {
     path: '/API',
     component: Layout,
@@ -217,87 +229,49 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/API/index'),
         name: 'API',
-        meta: { title: 'API网关', icon: 'user', noCache: true }
+        meta: {
+          title: 'API网关',
+          icon: 'user',
+          noCache: true,
+          roles: ['admin']
+        }
       }
     ]
   },
-  // END
+  {
+    path: '/authority',
+    component: Layout,
+    redirect: '/authority/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/authority/index'),
+        name: 'authority',
+        meta: {
+          title: '权限管理',
+          icon: 'user',
+          noCache: true,
+          roles: ['admin']
+        }
+      }
+    ]
+  },
 
-  // {
-  //   path: '/nested',
-  //   component: Layout,
-  //   redirect: '/nested/menu1',
-  //   name: 'Nested',
-  //   meta: {
-  //     title: 'Nested',
-  //     icon: 'nested'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'menu1',
-  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
-  //       name: 'Menu1',
-  //       meta: { title: 'Menu1' },
-  //       children: [
-  //         {
-  //           path: 'menu1-1',
-  //           component: () => import('@/views/nested/menu1/menu1-1'),
-  //           name: 'Menu1-1',
-  //           meta: { title: 'Menu1-1' }
-  //         },
-  //         {
-  //           path: 'menu1-2',
-  //           component: () => import('@/views/nested/menu1/menu1-2'),
-  //           name: 'Menu1-2',
-  //           meta: { title: 'Menu1-2' },
-  //           children: [
-  //             {
-  //               path: 'menu1-2-1',
-  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-  //               name: 'Menu1-2-1',
-  //               meta: { title: 'Menu1-2-1' }
-  //             },
-  //             {
-  //               path: 'menu1-2-2',
-  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-  //               name: 'Menu1-2-2',
-  //               meta: { title: 'Menu1-2-2' }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: 'menu1-3',
-  //           component: () => import('@/views/nested/menu1/menu1-3'),
-  //           name: 'Menu1-3',
-  //           meta: { title: 'Menu1-3' }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'menu2',
-  //       component: () => import('@/views/nested/menu2/index'),
-  //       meta: { title: 'menu2' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: 'external-link',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: '',
-  //       meta: { title: 'External Link', icon: 'link' }
-  //     }
-  //   ]
-  // },
-
-  // 404 page must be placed at the end !!!
+  // 404 页面一定要最后加载，如果放在constantRouterMap一同声明了404，后面的所以页面都会被拦截到404
   { path: '*', redirect: '/404', hidden: true }
+
+  // END
+]
+
+// 异步挂载的路由
+// 动态需要根据权限加载的路由表
+export const asyncRouterMap = [
+
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

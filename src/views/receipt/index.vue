@@ -1,27 +1,27 @@
 <template>
   <div class="dashboard-container">
-    <el-form ref="form1" :model="form" label-width="100px">
+    <el-form ref="form1" :model="form1" label-width="100px">
       <el-form-item label="验收时间">
         <el-col :span="11">
-          <el-date-picker v-model="form.date1" type="date" placeholder="开始时间" style="width: 100%;" />
+          <el-date-picker v-model="form1.date1" type="date" placeholder="开始时间" style="width: 100%;" />
         </el-col>
         <el-col class="line" :span="2" style="text-align:center;">-</el-col>
         <el-col :span="11">
-          <el-date-picker v-model="form.date2" type="date" placeholder="结束时间" style="width: 100%;" />
+          <el-date-picker v-model="form1.date2" type="date" placeholder="结束时间" style="width: 100%;" />
         </el-col>
       </el-form-item>
 
       <el-form-item label="验收单号">
-        <el-input v-model="form.number" />
+        <el-input v-model="form1.number" />
       </el-form-item>
       <el-form-item label="核心企业名称">
-        <el-input v-model="form.coreName" />
+        <el-input v-model="form1.coreName" />
       </el-form-item>
       <el-form-item label="客户名称">
-        <el-input v-model="form.name" />
+        <el-input v-model="form1.name" />
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button type="primary" plain>搜索</el-button>
       </el-form-item>
       <div style="margin-top:50px">
         <template>

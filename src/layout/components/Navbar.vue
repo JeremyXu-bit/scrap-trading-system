@@ -23,7 +23,7 @@
               添加账号
             </el-dropdown-item>
           </router-link>
-          <router-link to="" @click.native="clkdialog">
+          <router-link to="/authority/index" @click.native="clkdialog">
             <el-dropdown-item>
               权限管理
             </el-dropdown-item>
@@ -78,10 +78,11 @@ export default {
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
     clkdialog() {
-      this.$message({
-        message: '暂无权限！',
-        type: 'warning'
-      })
+      console.log('跳转成功')
+      // this.$message({
+      //   message: '暂无权限！',
+      //   type: 'warning'
+      // })
     }
   }
 }

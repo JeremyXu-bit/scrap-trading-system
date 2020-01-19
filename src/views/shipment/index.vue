@@ -1,24 +1,24 @@
 <template>
   <div class="dashboard-container">
     <el-form ref="form" :model="form" label-width="100px">
-      <el-form-item label="发布时间" style="margin-bottom: -15px;">
+      <el-form-item label="发布时间">
         <el-col :span="11">
           <el-date-picker v-model="form.date1" type="date" placeholder="开始时间" style="width: 100%;" />
         </el-col>
-        <el-col class="line" :span="2">-</el-col>
+        <el-col class="line" :span="2" style="text-align:center;">-</el-col>
         <el-col :span="11">
           <el-date-picker v-model="form.date2" type="date" placeholder="结束时间" style="width: 100%;" />
         </el-col>
       </el-form-item>
       <el-form-item label="审核状态">
-        <el-select v-model="form.status" placeholder="审核中">
+        <el-select v-model="form.status" placeholder="审核中" style="width:100%;">
           <el-option label="审核中" value="auditing" />
           <el-option label="成功" value="success" />
           <el-option label="失败" value="faily" />
         </el-select>
       </el-form-item>
       <el-form-item label="供应商类型">
-        <el-select v-model="form.type" placeholder="个人">
+        <el-select v-model="form.type" placeholder="个人" style="width:100%;">
           <el-option label="企业" value="company" />
           <el-option label="个人" value="personal" />
         </el-select>
@@ -33,7 +33,7 @@
         <el-input v-model="form.acceptName" />
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button type="primary" plain>搜索</el-button>
         <!-- <el-button @click="dialogFormVisible = true">确定接受</el-button> -->
       </el-form-item>
       <div style="margin-top:50px">
@@ -189,9 +189,5 @@ export default {
   &-container {
     margin: 30px;
   }
-}
-.el-form-item {
-  width: 50%;
-  display: inline-block;
 }
 </style>

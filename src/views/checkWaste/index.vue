@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <el-form ref="form1" :model="form" label-width="100px">
+    <el-form ref="form1" :model="form1" label-width="100px">
       <el-form-item label="发布时间">
         <el-col :span="11">
           <el-date-picker v-model="form1.date1" type="date" placeholder="开始时间" style="width: 100%;" />
@@ -24,7 +24,7 @@
       </el-form-item>
       <!-- <el-form-item style="width: 100%;text-align: right;"> -->
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button type="primary" plain>搜索</el-button>
         <!-- <el-button @click="dialogFormVisible = true">确定接受</el-button> -->
       </el-form-item>
       <div style="margin-top:50px">

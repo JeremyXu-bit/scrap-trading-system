@@ -23,8 +23,8 @@
         <el-input v-model="form.name" placeholder="请输入供应商名称" />
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
-        <el-button @click="dialogFormVisible = true">确定接受</el-button>
+        <el-button type="primary" plain>搜索</el-button>
+        <el-button @click="acceptWaste" type="primary" plain>确定接受</el-button>
       </el-form-item>
       <div style="margin-top:50px">
         <template>
@@ -144,7 +144,7 @@
             <el-form-item label="收货联系电话" :label-width="formLabelWidth">
               <el-input v-model="form.number" autocomplete="off" placeholder="请输入联系电话" />
             </el-form-item>
-            <p>你选择了X个供应商的废品，将自动生成X个订单。确定下单接受废品吗？</p>
+            <p>你选择了{{form.length}}个供应商的废品，将自动生成{{form.length}}个订单。确定下单接受废品吗？</p>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -157,10 +157,7 @@
 </template>
 
 <script>
-// import AcceptData from "../views/data/acceptData.vue";
-
 export default {
-  //   components: { AcceptData },
 
   data() {
     return {
@@ -169,7 +166,8 @@ export default {
         date2: '',
         number: '',
         type: '',
-        name: ''
+        name: '',
+        length:'0'
       },
       dialogFormVisible: false,
       form2: {
@@ -230,7 +228,20 @@ export default {
       }
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      console.log(val.length);
+      this.form.length = val.length
+    },
+    acceptWaste(){
+      var length = this.form.length;
+      if(length < 1){
+        this.$message({
+          message: '您暂未选择任何订单！',
+          type: 'warning'
+        });
+        return
+      }else{
+        this.dialogFormVisible = true
+      }
     }
   }
 }
@@ -246,10 +257,10 @@ tr {
   border: 1px;
 }
 th {
-  width: 120px;
+  width: 150px;
   text-align: right;
 }
 td {
-  margin-left: 30px;
+  padding-left: 5px;
 }
 </style>

@@ -3,12 +3,12 @@ import store from './store'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import { getToken } from '@/utils/auth' // 验权
 import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login'] // 不重定向白名单
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -37,6 +37,7 @@ router.beforeEach(async(to, from, next) => {
           next()
         } catch (error) {
           // remove token and go to login page to re-login
+          Message.error('验证失败,请重新登录')
           await store.dispatch('user/resetToken')
           Message.error(error || 'Has Error')
           next(`/login?redirect=${to.path}`)

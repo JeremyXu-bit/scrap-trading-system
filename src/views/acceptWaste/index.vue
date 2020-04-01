@@ -23,7 +23,7 @@
         <el-input v-model="form.name" placeholder="请输入供应商名称" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" plain>搜索</el-button>
+        <el-button type="primary" @click="seach" plain>搜索</el-button>
         <el-button @click="acceptWaste" type="primary" plain>确定接受</el-button>
       </el-form-item>
       <div style="margin-top:50px">
@@ -242,6 +242,9 @@ export default {
       }else{
         this.dialogFormVisible = true
       }
+    },
+    seach(){
+      // console.log(this.form.date1)
     }
   }
 }

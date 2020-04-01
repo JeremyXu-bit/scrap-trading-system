@@ -240,12 +240,12 @@
         // let containerName = this.addAPIForm.containerName,
         this.addAPIForm = {
           date: currentdate,
-          name: this.name,
-          containerName: this.containerName,
-          tel: this.tel,
+          name: this.addAPIForm.name,
+          containerName: this.addAPIForm.containerName,
+          tel: this.addAPIForm.tel,
           AppId: AppId,
           ApiKey: ApiKey,
-          notes: this.notes
+          notes: this.addAPIForm.notes
         };
         this.tableData.push(this.addAPIForm);
         this.dialogFormVisible = false;

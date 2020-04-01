@@ -47,6 +47,7 @@ export default {
   methods: {
     onSubmit() {
       this.$message('提交成功!')
+      this.$refs.form.resetFields()
     },
     onCancel() {
       // this.$message({

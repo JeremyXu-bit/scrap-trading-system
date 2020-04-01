@@ -38,9 +38,10 @@
             <el-table-column prop="name" label="供应商名称" />
           </el-table>
 
+          <!--翻页-->
           <template>
             <div>
-              <el-pagination small layout="prev, pager, next" :total="50" style="text-align:right;padding-top:10px" />
+              <el-pagination small layout="prev, pager, next" :total="30" style="text-align:right;padding-top:10px" />
             </div>
           </template>
 

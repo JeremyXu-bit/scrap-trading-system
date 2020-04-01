@@ -17,7 +17,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="审核状态">
-        <el-select v-model="form.status" placeholder="待审核" style="width:100%;">>
+        <el-select v-model="form.status" placeholder="待审核" style="width:100%;">
           <el-option label="待审核" value="Inreview" />
           <el-option label="成功" value="success" />
           <el-option label="失败" value="faily" />

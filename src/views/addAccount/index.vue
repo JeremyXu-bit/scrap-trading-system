@@ -27,8 +27,9 @@
         <el-button
           v-loading.fullscreen.lock="fullscreenLoading"
           style="float: right;"
+          type="primary"
+          plain
           @click="open"
-          type="primary" plain
         >确认</el-button>
       </el-form-item>
     </el-form>

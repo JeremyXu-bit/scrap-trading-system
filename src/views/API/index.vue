@@ -23,8 +23,7 @@
       <el-table :data="tableData" border style="width: 100%">
         <!-- 动态循环的列表 -->
         <template v-for="(item, index) in tableLabel">
-          <el-table-column :key="index" :prop="item.prop" :label="item.label" width="">
-          </el-table-column>
+          <el-table-column :key="index" :prop="item.prop" :label="item.label" width="" />
         </template>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
@@ -38,22 +37,21 @@
 
     <template>
       <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-        <el-form :model="addAPIForm" ref="addAPIForm" autocomplete="off" :rules="addAPIForm">
+        <el-form ref="addAPIForm" :model="addAPIForm" autocomplete="off" :rules="addAPIForm">
           <el-form-item label="公司名称" :label-width="formLabelWidth" prop="name">
-            <el-input v-model="addAPIForm.name" placeholder="请输入公司名称"></el-input>
+            <el-input v-model="addAPIForm.name" placeholder="请输入公司名称" />
           </el-form-item>
           <el-form-item label="联系人" :label-width="formLabelWidth" prop="containerName">
-            <el-input v-model="addAPIForm.containerName" placeholder="请输入联系人名字"></el-input>
+            <el-input v-model="addAPIForm.containerName" placeholder="请输入联系人名字" />
           </el-form-item>
           <el-form-item label="联系电话" :label-width="formLabelWidth" prop="tel">
-            <el-input v-model="addAPIForm.tel" placeholder="请输入联系电话"></el-input>
+            <el-input v-model="addAPIForm.tel" placeholder="请输入联系电话" />
           </el-form-item>
           <el-form-item label="对接系统名称" :label-width="formLabelWidth" prop="sys">
-            <el-input v-model="addAPIForm.sys" placeholder="请输入对接系统名称"></el-input>
+            <el-input v-model="addAPIForm.sys" placeholder="请输入对接系统名称" />
           </el-form-item>
           <el-form-item label="备注" :label-width="formLabelWidth" prop="notes">
-            <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容（不超过500字）" v-model="addAPIForm.notes">
-            </el-input>
+            <el-input v-model="addAPIForm.notes" type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容（不超过500字）" />
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -65,230 +63,229 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      const name = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('公司名称不能为空！'))
-        } else {
-          callback()
-        }
-      }
-      const containerName = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('联系人不能为空！'))
-        } else {
-          callback()
-        }
-      }
-      const tel = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('联系电话不能为空！'))
-        } else {
-          callback()
-        }
-      }
-      const sys = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('公司名称不能为空！'))
-        } else {
-          callback()
-        }
-      }
-      return {
-        dialogTableVisible: false,
-        fullscreenLoading: false,
-        dialogFormVisible: false,
-        addAPIForm: {
-          name: [{
-            required: true,
-            trigger: 'blur',
-            validator: name
-          }],
-          containerName: [{
-            required: true,
-            trigger: 'blur',
-            validator: containerName
-          }],
-          tel: [{
-            required: true,
-            trigger: 'blur',
-            validator: tel
-          }],
-          sys: [{
-            required: true,
-            trigger: 'blur',
-            validator: sys
-          }],
-        },
-        roles: '',
-        form: {
-          account: '',
-          name: '',
-          tel: ''
-        },
-        addAPIForm: {
-          name: '',
-          containerName: '',
-          tel: '',
-          sys: ''
-        },
-        formLabelWidth: '120px',
-        options: [{
-            value: '选项1',
-            label: '运营'
-          },
-          {
-            value: '选项2',
-            label: '客服'
-          }
-        ],
-        value: '',
-        tableData: [{
-            date: '2016-12-22',
-            name: '上海化工',
-            contact: '王小虎',
-            tel: '18565805967',
-            AppId: 'SH0087',
-            ApiKey: 'evxvxW4nfgffc'
-          },
-          {
-            date: '2016-05-02',
-            name: '深圳机场',
-            contact: '李丽',
-            tel: '13789635623',
-            AppId: 'SZ8963',
-            ApiKey: 'evxvdfddfg57'
-          }
-        ],
-        tableLabel: [{
-            label: '申请时间',
-            prop: 'date'
-          },
-          {
-            label: '公司名称',
-            prop: 'name'
-          },
-          {
-            label: '联系人',
-            prop: 'contact'
-          },
-          {
-            label: '联系电话',
-            prop: 'tel'
-          },
-          {
-            label: 'APP ID',
-            prop: 'AppId'
-          },
-          {
-            label: 'API Key',
-            prop: 'ApiKey'
-          }
-        ],
-      }
-    },
-    computed: {
-      // addAPIForm() {
-      //   return this.list;
-      // }
-    },
-    methods: {
-      // modify() {
-      //   this.$emit('modify', this.addAPIForm);
-      // },
-      open() {
-        this.dialogFormVisible = false
-        this.fullscreenLoading = true
-        setTimeout(() => {
-          this.fullscreenLoading = false
-          this.$message({
-            message: '添加成功！',
-            type: 'success'
-          })
-        }, 2000)
-      },
-      close() {
-        this.dialogFormVisible = false
-        // this.$refs[registerForm].resetFields();
-      },
-      handleClick(row) {
-        this.$msgbox({
-          title: '详情',
-          message: row,
-          confirmButtonText: '确定',
-        })
-      },
-
-      addRow() {
-        let date = new Date();
-        let seperator1 = "-";
-        let year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        let strDate = date.getDate();
-        if (month >= 1 && month <= 9) {
-          month = "0" + month;
-        }
-        if (strDate >= 0 && strDate <= 9) {
-          strDate = "0" + strDate;
-        }
-        let currentdate = year + seperator1 + month + seperator1 + strDate;
-        //  获取当前时间 end
-
-        let AppId = 'SH' + Math.random().toString(36).substr(2, 4);
-        let ApiKey = Math.random().toString(36).substr(2, 15);
-        // let containerName = this.addAPIForm.containerName,
-        this.addAPIForm = {
-          date: currentdate,
-          name: this.addAPIForm.name,
-          containerName: this.addAPIForm.containerName,
-          tel: this.addAPIForm.tel,
-          AppId: AppId,
-          ApiKey: ApiKey,
-          notes: this.addAPIForm.notes
-        };
-        this.tableData.push(this.addAPIForm);
-        this.dialogFormVisible = false;
-      },
-      //新增
-      // addRow: function() {
-      //   this.$refs.addForm.validate((valid) => {
-      //     if (valid) {
-      //       this.$confirm('确认提交吗？', '提示', {}).then(() => {
-      //         this.addLoading = true;
-      //         //NProgress.start();
-      //         let para = Object.assign({}, this.addAPIForm);
-      //         // para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth),'yyyy-MM-dd');
-      //         addUser(para).then((res) => {
-      //           this.addLoading = false;
-      //           //NProgress.done();
-      //           this.$message({
-      //             message: '提交成功',
-      //             type: 'success'
-      //           });
-      //           this.$refs['addAPIForm'].resetFields();
-      //           this.dialogFormVisible = false;
-      //           this.getUsers();
-      //         });
-      //       });
-      //     }
-      //   });
-      // },
-
-
-      deleteRow(index, rows) { // 删除改行
-        this.fullscreenLoading = true
-        setTimeout(() => {
-          rows.splice(index, 1)
-          this.fullscreenLoading = false
-          this.$message({
-            message: '删除成功！',
-            type: 'success'
-          })
-        }, 2000)
+export default {
+  data() {
+    const name = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('公司名称不能为空！'))
+      } else {
+        callback()
       }
     }
+    const containerName = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('联系人不能为空！'))
+      } else {
+        callback()
+      }
+    }
+    const tel = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('联系电话不能为空！'))
+      } else {
+        callback()
+      }
+    }
+    const sys = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('公司名称不能为空！'))
+      } else {
+        callback()
+      }
+    }
+    return {
+      dialogTableVisible: false,
+      fullscreenLoading: false,
+      dialogFormVisible: false,
+      addAPIForm: {
+        name: [{
+          required: true,
+          trigger: 'blur',
+          validator: name
+        }],
+        containerName: [{
+          required: true,
+          trigger: 'blur',
+          validator: containerName
+        }],
+        tel: [{
+          required: true,
+          trigger: 'blur',
+          validator: tel
+        }],
+        sys: [{
+          required: true,
+          trigger: 'blur',
+          validator: sys
+        }]
+      },
+      roles: '',
+      form: {
+        account: '',
+        name: '',
+        tel: ''
+      },
+      addAPIForm: {
+        name: '',
+        containerName: '',
+        tel: '',
+        sys: ''
+      },
+      formLabelWidth: '120px',
+      options: [{
+        value: '选项1',
+        label: '运营'
+      },
+      {
+        value: '选项2',
+        label: '客服'
+      }
+      ],
+      value: '',
+      tableData: [{
+        date: '2016-12-22',
+        name: '上海化工',
+        contact: '王小虎',
+        tel: '18565805967',
+        AppId: 'SH0087',
+        ApiKey: 'evxvxW4nfgffc'
+      },
+      {
+        date: '2016-05-02',
+        name: '深圳机场',
+        contact: '李丽',
+        tel: '13789635623',
+        AppId: 'SZ8963',
+        ApiKey: 'evxvdfddfg57'
+      }
+      ],
+      tableLabel: [{
+        label: '申请时间',
+        prop: 'date'
+      },
+      {
+        label: '公司名称',
+        prop: 'name'
+      },
+      {
+        label: '联系人',
+        prop: 'contact'
+      },
+      {
+        label: '联系电话',
+        prop: 'tel'
+      },
+      {
+        label: 'APP ID',
+        prop: 'AppId'
+      },
+      {
+        label: 'API Key',
+        prop: 'ApiKey'
+      }
+      ]
+    }
+  },
+  computed: {
+    // addAPIForm() {
+    //   return this.list;
+    // }
+  },
+  methods: {
+    // modify() {
+    //   this.$emit('modify', this.addAPIForm);
+    // },
+    open() {
+      this.dialogFormVisible = false
+      this.fullscreenLoading = true
+      setTimeout(() => {
+        this.fullscreenLoading = false
+        this.$message({
+          message: '添加成功！',
+          type: 'success'
+        })
+      }, 2000)
+    },
+    close() {
+      this.dialogFormVisible = false
+      // this.$refs[registerForm].resetFields();
+    },
+    handleClick(row) {
+      this.$msgbox({
+        title: '详情',
+        message: row,
+        confirmButtonText: '确定'
+      })
+    },
+
+    addRow() {
+      const date = new Date()
+      const seperator1 = '-'
+      const year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let strDate = date.getDate()
+      if (month >= 1 && month <= 9) {
+        month = '0' + month
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = '0' + strDate
+      }
+      const currentdate = year + seperator1 + month + seperator1 + strDate
+      //  获取当前时间 end
+
+      const AppId = 'SH' + Math.random().toString(36).substr(2, 4)
+      const ApiKey = Math.random().toString(36).substr(2, 15)
+      // let containerName = this.addAPIForm.containerName,
+      this.addAPIForm = {
+        date: currentdate,
+        name: this.addAPIForm.name,
+        containerName: this.addAPIForm.containerName,
+        tel: this.addAPIForm.tel,
+        AppId: AppId,
+        ApiKey: ApiKey,
+        notes: this.addAPIForm.notes
+      }
+      this.tableData.push(this.addAPIForm)
+      this.dialogFormVisible = false
+    },
+    // 新增
+    // addRow: function() {
+    //   this.$refs.addForm.validate((valid) => {
+    //     if (valid) {
+    //       this.$confirm('确认提交吗？', '提示', {}).then(() => {
+    //         this.addLoading = true;
+    //         //NProgress.start();
+    //         let para = Object.assign({}, this.addAPIForm);
+    //         // para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth),'yyyy-MM-dd');
+    //         addUser(para).then((res) => {
+    //           this.addLoading = false;
+    //           //NProgress.done();
+    //           this.$message({
+    //             message: '提交成功',
+    //             type: 'success'
+    //           });
+    //           this.$refs['addAPIForm'].resetFields();
+    //           this.dialogFormVisible = false;
+    //           this.getUsers();
+    //         });
+    //       });
+    //     }
+    //   });
+    // },
+
+    deleteRow(index, rows) { // 删除改行
+      this.fullscreenLoading = true
+      setTimeout(() => {
+        rows.splice(index, 1)
+        this.fullscreenLoading = false
+        this.$message({
+          message: '删除成功！',
+          type: 'success'
+        })
+      }, 2000)
+    }
   }
+}
 </script>
 <style lang="scss" scoped>
   .dashboard {

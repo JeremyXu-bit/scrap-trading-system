@@ -23,8 +23,8 @@
         <el-input v-model="form.name" placeholder="请输入供应商名称" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="seach" plain>搜索</el-button>
-        <el-button @click="acceptWaste" type="primary" plain>确定接受</el-button>
+        <el-button type="primary" plain @click="seach">搜索</el-button>
+        <el-button type="primary" plain @click="acceptWaste">确定接受</el-button>
       </el-form-item>
       <div style="margin-top:50px">
         <template>
@@ -144,7 +144,7 @@
             <el-form-item label="收货联系电话" :label-width="formLabelWidth">
               <el-input v-model="form.number" autocomplete="off" placeholder="请输入联系电话" />
             </el-form-item>
-            <p>你选择了{{form.length}}个供应商的废品，将自动生成{{form.length}}个订单。确定下单接受废品吗？</p>
+            <p>你选择了{{ form.length }}个供应商的废品，将自动生成{{ form.length }}个订单。确定下单接受废品吗？</p>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -167,7 +167,7 @@ export default {
         number: '',
         type: '',
         name: '',
-        length:'0'
+        length: '0'
       },
       dialogFormVisible: false,
       form2: {
@@ -228,22 +228,22 @@ export default {
       }
     },
     handleSelectionChange(val) {
-      console.log(val.length);
+      console.log(val.length)
       this.form.length = val.length
     },
-    acceptWaste(){
-      var length = this.form.length;
-      if(length < 1){
+    acceptWaste() {
+      var length = this.form.length
+      if (length < 1) {
         this.$message({
           message: '您暂未选择任何订单！',
           type: 'warning'
-        });
+        })
         return
-      }else{
+      } else {
         this.dialogFormVisible = true
       }
     },
-    seach(){
+    seach() {
       // console.log(this.form.date1)
     }
   }

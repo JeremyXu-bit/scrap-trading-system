@@ -27,7 +27,7 @@
       </el-form-item>
       <el-form-item label="图形验证码" prop="imgCode">
         <el-input v-model="registerForm.imgCode" placeholder="请输入图形验证码" class="imgCode">
-          <template slot="append"  @click="refreshCode">
+          <template slot="append" @click="refreshCode">
             <s-identify :identify-code="identifyCode" />
           </template>
         </el-input>
@@ -35,10 +35,10 @@
       <el-form-item>
         <el-row :gutter="20">
           <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
-            <el-button @click="resetForm('registerForm')" style="width: 100%;">重置</el-button>
+            <el-button style="width: 100%;" @click="resetForm('registerForm')">重置</el-button>
           </el-col>
           <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
-            <el-button type="primary" @click="submitForm('registerForm')" style="width: 100%;">提交</el-button>
+            <el-button type="primary" style="width: 100%;" @click="submitForm('registerForm')">提交</el-button>
           </el-col>
         </el-row>
       </el-form-item>
@@ -138,10 +138,10 @@ export default {
         ]
       },
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-      url: '',
+      url: ''
     }
   },
-  mounted () {
+  mounted() {
     this.refreshCode()
     this.identifyCode = ''
     this.makeCode(this.identifyCodes, 4)
@@ -157,10 +157,9 @@ export default {
         }
       })
       // this.$router.push({ path: '/' })
-      
     },
     resetForm(registerForm) {
-      this.$refs[registerForm].resetFields();
+      this.$refs[registerForm].resetFields()
     },
     getCode(e) {
       console.log('获取验证码')

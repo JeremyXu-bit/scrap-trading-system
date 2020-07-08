@@ -23,8 +23,14 @@
       <div style="margin-top:50px">
         <template>
           <div>
-            <el-table ref="multipleTable" border :data="tableData" tooltip-effect="dark" style="width: 100%"
-              @selection-change="handleSelectionChange">
+            <el-table
+              ref="multipleTable"
+              border
+              :data="tableData"
+              tooltip-effect="dark"
+              style="width: 100%"
+              @selection-change="handleSelectionChange"
+            >
               <el-table-column label="出库时间" width="200">
                 <template slot-scope="scope">{{ scope.row.date }}</template>
               </el-table-column>
@@ -36,7 +42,7 @@
               <el-table-column prop="name" label="核心企业名称" />
               <el-table-column prop="operation" label="操作" show-overflow-tooltip>
                 <template>
-                  <el-button  type="text" size="small" @click="dialogFormVisible = true">验收</el-button >
+                  <el-button type="text" size="small" @click="dialogFormVisible = true">验收</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -84,7 +90,7 @@
                   </el-form>
                   <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary"  @click="dialogFormVisible = false">验 收</el-button>
+                    <el-button type="primary" @click="dialogFormVisible = false">验 收</el-button>
                   </div>
                 </el-dialog>
               </div>
@@ -98,83 +104,83 @@
 </template>
 
 <script>
-  export default {
+export default {
 
-    data() {
-      return {
-        form: {
-          date1: '',
-          date2: '',
-          number: '',
-          type: '',
-          name: ''
-        },
-        tableData: [{
-            date: '2016-05-03',
-            number: 'SF20191230123456030',
-            wasteType: '金属',
-            type: '企业',
-            name: '唐山钢铁集团'
-          },
-          {
-            date: '2016-05-03',
-            number: 'SF20195673456030',
-            wasteType: '木材',
-            type: '个人',
-            name: '上海市林业局'
-          }
-        ],
-        multipleSelection: [],
-        dialogTableVisible: false,
-        dialogFormVisible: false,
-        gridData3: [{
-          coreName: '中国园林',
-          name: '张安',
-          date: '2016-05-03',
-          number: 'SW2345678',
-          senderName: '李晓',
-          senderTel: '13767890987',
-          acceptName: '钟启超',
-          acceptTel: '18679089745'
-        }],
-        gridData2: [{
-            name: '树木',
-            totals: '50吨'
-          },
-          {
-            number: 'SW2345678',
-            name: '树木',
-            totals: '50吨'
-          }
-        ],
-        form3: [{
-          name: '',
-          add: ''
-        }],
-        formLabelWidth: '120px'
+  data() {
+    return {
+      form: {
+        date1: '',
+        date2: '',
+        number: '',
+        type: '',
+        name: ''
+      },
+      tableData: [{
+        date: '2016-05-03',
+        number: 'SF20191230123456030',
+        wasteType: '金属',
+        type: '企业',
+        name: '唐山钢铁集团'
+      },
+      {
+        date: '2016-05-03',
+        number: 'SF20195673456030',
+        wasteType: '木材',
+        type: '个人',
+        name: '上海市林业局'
+      }
+      ],
+      multipleSelection: [],
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      gridData3: [{
+        coreName: '中国园林',
+        name: '张安',
+        date: '2016-05-03',
+        number: 'SW2345678',
+        senderName: '李晓',
+        senderTel: '13767890987',
+        acceptName: '钟启超',
+        acceptTel: '18679089745'
+      }],
+      gridData2: [{
+        name: '树木',
+        totals: '50吨'
+      },
+      {
+        number: 'SW2345678',
+        name: '树木',
+        totals: '50吨'
+      }
+      ],
+      form3: [{
+        name: '',
+        add: ''
+      }],
+      formLabelWidth: '120px'
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.$message({
+        message: '提交成功',
+        type: 'success'
+      })
+    },
+    toggleSelection(rows) {
+      if (rows) {
+        rows.forEach(row => {
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
+      } else {
+        this.$refs.multipleTable.clearSelection()
       }
     },
-    methods: {
-      onSubmit() {
-        this.$message({
-          message: '提交成功',
-          type: 'success'
-        })
-      },
-      toggleSelection(rows) {
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row)
-          })
-        } else {
-          this.$refs.multipleTable.clearSelection()
-        }
-      },
-      handleSelectionChange(val) {
-        this.multipleSelection = val
-      }
+    handleSelectionChange(val) {
+      this.multipleSelection = val
     }
   }
+}
 
 </script>
 <style lang="scss" scoped>

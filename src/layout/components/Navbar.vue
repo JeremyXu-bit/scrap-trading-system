@@ -39,7 +39,6 @@
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <i class="el-icon-user">
-            <svg-icon icon-class="user" />
             <span style="margin-left:5px">王小虎</span>
           </i>
         </div>

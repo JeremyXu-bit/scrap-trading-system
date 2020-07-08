@@ -24,8 +24,14 @@
       <div style="margin-top:50px">
         <template>
           <div>
-            <el-table ref="multipleTable" border :data="tableData" tooltip-effect="dark" style="width: 100%"
-              @selection-change="handleSelectionChange">
+            <el-table
+              ref="multipleTable"
+              border
+              :data="tableData"
+              tooltip-effect="dark"
+              style="width: 100%"
+              @selection-change="handleSelectionChange"
+            >
               <el-table-column label="订单时间" width="150">
                 <template slot-scope="scope">{{ scope.row.date }}</template>
               </el-table-column>
@@ -96,90 +102,90 @@
 </template>
 
 <script>
-  export default {
+export default {
 
-    data() {
-      return {
-        form: {
-          date1: '',
-          date2: '',
-          number: '',
-          type: '',
-          name: ''
-        },
-        dialogTableVisible: false,
-        dialogFormVisible: false,
-        form2: {
-          name: '',
-          number: ''
-        },
-        formLabelWidth: '120px',
-        tableData: [{
-            date: '2016-05-03',
-            number: 'SF20191230123456030',
-            name: '中国重工',
-            type: '重金属'
-          },
-          {
-            date: '2016-05-03',
-            number: 'SF20191230123456030',
-            name: '中国重工',
-            type: '重金属'
-          }
-        ],
-        multipleSelection: [],
-        gridData: [{
-          name: '中国园林',
-          acceptName: '绿化企业',
-          date: '2016-05-03',
-          number: 'SW2345678',
-          name2: '钟启超',
-          tel: '18679089745'
-        }],
-        gridData2: [{
-            number: 'SW2345678',
-            name: '树木',
-            totals: '50吨'
-          },
-          {
-            number: 'SW2345678',
-            name: '树木',
-            totals: '50吨'
-          }
-        ],
-        form3: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        }
+  data() {
+    return {
+      form: {
+        date1: '',
+        date2: '',
+        number: '',
+        type: '',
+        name: ''
+      },
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      form2: {
+        name: '',
+        number: ''
+      },
+      formLabelWidth: '120px',
+      tableData: [{
+        date: '2016-05-03',
+        number: 'SF20191230123456030',
+        name: '中国重工',
+        type: '重金属'
+      },
+      {
+        date: '2016-05-03',
+        number: 'SF20191230123456030',
+        name: '中国重工',
+        type: '重金属'
       }
-    },
-    methods: {
-      onSubmit() {
-        this.$message({
-          message: '提交成功',
-          type: 'success'
-        })
+      ],
+      multipleSelection: [],
+      gridData: [{
+        name: '中国园林',
+        acceptName: '绿化企业',
+        date: '2016-05-03',
+        number: 'SW2345678',
+        name2: '钟启超',
+        tel: '18679089745'
+      }],
+      gridData2: [{
+        number: 'SW2345678',
+        name: '树木',
+        totals: '50吨'
       },
-      toggleSelection(rows) {
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row)
-          })
-        } else {
-          this.$refs.multipleTable.clearSelection()
-        }
-      },
-      handleSelectionChange(val) {
-        this.multipleSelection = val
+      {
+        number: 'SW2345678',
+        name: '树木',
+        totals: '50吨'
+      }
+      ],
+      form3: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
       }
     }
+  },
+  methods: {
+    onSubmit() {
+      this.$message({
+        message: '提交成功',
+        type: 'success'
+      })
+    },
+    toggleSelection(rows) {
+      if (rows) {
+        rows.forEach(row => {
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
+      } else {
+        this.$refs.multipleTable.clearSelection()
+      }
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    }
   }
+}
 
 </script>
 <style lang="scss" scoped>

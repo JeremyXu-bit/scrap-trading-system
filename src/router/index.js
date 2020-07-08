@@ -36,7 +36,26 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '发布废品', icon: 'dashboard' }
+      meta: {
+        title: '首页',
+        icon: 'dashboard',
+        roles: ['admin', 'editor'], //你可以在根路由设置权限，这样它下面所以的子路由都继承了这个权限
+        noCache: true // 不会被 <keep-alive> 缓存
+      }
+    }]
+  },
+
+  {
+    path: '/releaseWaste',
+    component: Layout,
+    children: [{
+      path: 'releaseWaste',
+      name: 'releaseWaste',
+      component: () => import('@/views/releaseWaste/index'),
+      meta: {
+        title: '发布废品',
+        icon: 'dashboard'
+      }
     }]
   },
 
@@ -170,6 +189,21 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: 'external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://www.baidu.com',
+        meta: {
+          title: '外部链接',
+          icon: 'link'
+        }
+      }
+    ]
+  },
+
   // 顶部导航
   {
     path: '/accountInfo',

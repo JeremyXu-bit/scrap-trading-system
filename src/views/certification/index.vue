@@ -44,7 +44,7 @@
               <el-table-column prop="name" label="姓名/企业名称" />
               <el-table-column prop="status" label="审核状态" />
               <el-table-column prop="operation" label="操作" show-overflow-tooltip>
-                <template  slot-scope="scope">
+                <template slot-scope="scope">
                   <el-button type="text" size="small" @click="open1(scope.row)">审核</el-button>
                   <el-button type="text" size="small" @click="open2(scope.row)">详情</el-button>
                 </template>
@@ -150,7 +150,8 @@
           </el-table>
           <div slot="footer" class="dialog-footer">
             <el-button
-            type="primary" plain
+              type="primary"
+              plain
               @click="dialogTableVisible = false;dialogFormVisible = true"
             >下一步</el-button>
           </div>
@@ -195,7 +196,7 @@ export default {
 	     persionInfo: '个人实名认证详情',
 	     companyInfo: '企业实名认证详情'
 	   },
-	   dialogStatus: '' ,
+	   dialogStatus: '',
       form: {
         date1: '',
         date2: '',
@@ -268,16 +269,16 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
-    open1(row){
+    open1(row) {
       // console.log(row.type)
       this.persionCertificationVisible = true
       if (row.type === '企业') {
-	       this.dialogStatus = "companyInfo"
+	       this.dialogStatus = 'companyInfo'
       } else {
-        this.dialogStatus = "persionInfo"
+        this.dialogStatus = 'persionInfo'
       }
     },
-    open2(row){
+    open2(row) {
       this.persionCertificationVisible = true
     }
   }
